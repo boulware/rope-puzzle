@@ -6,6 +6,11 @@
 #define key_d SDL_SCANCODE_D
 #define key_s SDL_SCANCODE_S
 #define key_w SDL_SCANCODE_W
+#define key_backspace SDL_SCANCODE_BACKSPACE
+#define key_q SDL_SCANCODE_Q
+#define key_e SDL_SCANCODE_E
+#define key_comma SDL_SCANCODE_COMMA
+#define key_period SDL_SCANCODE_PERIOD
 
 struct InputState {
 	int key_count;
