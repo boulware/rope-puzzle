@@ -1,0 +1,1 @@
+@cl /nologo main.cpp /Zi /I SDL\include /I TTF\include /link /LIBPATH:SDL\lib\x64 /LIBPATH:TTF\lib\x64 SDL2main.lib SDL2.lib SDL2_ttf.lib

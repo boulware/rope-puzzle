@@ -1,0 +1,14 @@
+RemedyBG request features:
+*double click opens tree of variable in watch window
+*Drag-reordering of watch values
+*Don't reset tree state when debugging stops.
+*Right click > add watch, adds the watch at the location clicked instead of end of list?
+*When you are drag editing a watch value (to change the string), it will highlight source files simultaneously.
+*Keyboard shortcut (and/or mouse right click context menu option) to add selected text as a watch variable.
+
+
+*Look up if remedy can "expand all" in a watch struct
+*Sublime cost
+* SDL_GetKeyboardState: It will be valid for the whole lifetime of the application and should not be freed by the caller. [Really?]
+* Look at HMH implementation of dynamically sized array. I'm curious how you deal with a void* memory member specifically.
+* Screenshot 001 shows a situation where our rope-tied-to-anchor resolving method doesn't work. If the unit moves right, the natural thing to happen would be that the short line segment at the bottom straightens out, shortening the laid_down_length by 1, but what would happen with our current alg is the whole shape would be shifted right starting at the far left edge. [some kind of shortest path alg might work, but then we have to figure out which cells to test for a shortest path between; I guess just iteratively on each cell, spreading out from the closest-connected rope piece.]

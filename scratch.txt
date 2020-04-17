@@ -1,0 +1,25 @@
+If the step would make the rope too long and it's connected to an anchor, starting at the closest connected rope (before the movement), check the actual distance along the rope between the rope piece and the target cell and compare it to the taxicab metric distance between the two cells. If they are not equal, then delete the pieces of rope which occur after the index of the current piece (in reality, just shorten the rope by that amount and then... ?). If they are equal, move to the next rope piece and repeat the process.
+-------------
+Anchor: An anchor exists in a cell and if you attach a rope to it, the thing attached to the other side can only go rope_length blocks away from the anchor (measured in taxicab metric) unless the thing lets go of the rope. Also, the cell they occupy can't be entered by another unit.
+----------------------------
+When we step, what are the different possible conditions?
+1) The cell is invalid => we do nothing
+2) The target has no rope in it, and laid_down_length < length
+		=> Place rope piece in current cell (index=laid_down_length)
+		=> Increment laid_down_length
+		=> Move unit to target loc
+3) The target has no rope in it, and laid_down_length == length
+		=> Rotate piece_locations left (0 rotates off to left, 1->0, 2->1, ... length-1->length-2) and then place current cell in last index
+		in the newly cleared last index (i=length-1)
+		=> Move unit to target loc
+4) The target has rope in it, the piece is directly connected, and laid_down_length <= length
+		=> Decrement laid_down_length
+		=> Move unit
+5) The target has rope in it, the piece is not directly connected, and laid_down_length < length
+		=> Place rope piece in current cell (index=laid_down_length) and increment laid_down_length // Unnecessary but might help code factoring
+		=> Subtract the number of pieces removed from laid_down_length, which equals (laid_down_length-1) - [target_loc index] + 1 = laid_down_length-target_loc index
+		=> Move unit
+6) The target has rope in it, the piece is not directly connected, and laid_down_length == length
+		=> Rotate piece_locations left (0 rotates off, 1->0, 2->1, ... length-1->length-2) and then place current cell in last index in the newly clearly last index (i=length-1)
+		=> Subtract the number of pieces removed from laid_down_length, which equals (laid_down_length-1) - [target_loc index] + 1 = laid_down_length-target_loc index
+		=> Move unit
